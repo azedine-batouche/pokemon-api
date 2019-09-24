@@ -21,4 +21,9 @@ export class PokemonsService{
                 return pokemons[index];
         }
     }
+
+    //Retourne tous les types d'un pokemon
+    getPokemonType(): string[] {
+        return ['Feu','Eau','Plante','Inscete','Normal','Electrik','Poisson','Fée','Vol'];
+    }
 }

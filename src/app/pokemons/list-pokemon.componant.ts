@@ -12,7 +12,6 @@ export class ListPokemonComponent implements OnInit {
 
   private pokemons: Pokemon[];
   private title: string = "Liste des pokémons";
-  private age:number= 20;
 
     constructor(private router: Router, private pokemonsService: PokemonsService){}
 
