@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from './pokemon';
-import { POKEMON } from './mock-pokemons';
+import { Pokemon } from './pokemons/pokemon';
+import { POKEMON } from './pokemons/mock-pokemons';
 
 @Component({
   selector: 'pokemon-app',
@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   private pokemons: Pokemon[];
   private title: string = "Liste des pokémons";
+  private age:number= 20;
+
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
