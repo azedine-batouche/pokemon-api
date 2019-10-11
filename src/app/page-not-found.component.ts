@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <div class='center'>
       <img src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/035.png"/>
       <h1>Hey, cette page n'existe pas !</h1>
-      <a routerLink="/pokemons" class="waves-effect waves-teal btn-flat">
+      <a routerLink="/pokemons/all" class="waves-effect waves-teal btn-flat">
         Retourner à l' accueil
       </a>
     </div>

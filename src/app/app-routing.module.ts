@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pokemons', pathMatch: 'full'},
+  { path: '', redirectTo: 'pokemons/all', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent }
 
 ];

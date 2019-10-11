@@ -8,18 +8,28 @@ import { BorderCardDirective } from './border-card.directive';
 import { PokemonTypeColor } from './pokemon-type-color.pipe';
 import { PokemonsService } from './pokemons.service';
 import { PokemonsFormComponent } from './pokemons-form.component';
+import { EditPokemonComponent } from './edit-pokemon.component';
+import { PokemonSearchComponent } from './search-pokemon.component';
+import  { LoaderComponent } from '../loader.component';
+
+import { FormsModule } from '@angular/forms';
+import { AuthGuard } from '../auth-guard.service';
 @NgModule({
 	imports: [
-        CommonModule,
+		CommonModule,
+		FormsModule,
         PokemonRoutingModule,
 	],
 	declarations: [
+		PokemonSearchComponent,
 		ListPokemonComponent,
 		DetailPokemonComponent,
 		BorderCardDirective,
 		PokemonTypeColor,
 		PokemonsFormComponent,
+		EditPokemonComponent,
+		LoaderComponent
 	],
-	providers: [PokemonsService]
+	providers: [PokemonsService, AuthGuard]
 })
 export class PokemonsModule { }
