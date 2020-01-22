@@ -5,55 +5,68 @@ import { AuthService } from './auth.service';
 @Component({
 	selector: 'login',
 	template: `
-    <div class='row'>
-    <div class="col s12 m4 offset-m4">
-    <div class="card hoverable">
-      <div class="card-content center">
-        <span class="card-title">Page de connexion</span>
-        <p><em>{{message}}</em></p>
+	<div class="wrapper-main"> 
+    <div class="wrapper">
+    <div class="card  ctn-log">
+		<div class="border-bottom  log-info mb-3 ">
+			<div class="row px-3">
+				<div class="col-md-6 col-sm-12">
+					<p class=" text-success pr-3 pt-3">Name: admin</p>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<p class=" text-success pt-3">Password: admin</p>
+				</div>
+			</div>
+		</div>
+
+      <div class="card-content text-center">
+        <span class="card-title m-auto">Login</span>
+        <p><em *ngIf="successConnection" class="msg-success">{{message}}</em></p>
+        <p><em *ngIf="!successConnection" class="msg-danger">{{message}}</em></p>
       </div>
-			<form #loginForm="ngForm">
-	      <div>
+			<form #loginForm="ngForm" (keyup.enter)='login()'>
+	      <div class="group-input px-5">
 					<label for="name">Name</label>
-	        <input type="text" id="name" [(ngModel)]="name" name="name" required>
+	        <input type="text" id="name"  class="form-control " [(ngModel)]="name" name="name" required>
 	      </div>
-	      <div>
+	      <div class="group-input px-5">
 	        <label for="password">Password</label>
-	        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+	        <input type="password" id="password"  class="form-control" [(ngModel)]="password" name="password" required>
 	      </div>
 	    </form>
-      <div class="card-action center">
-        <a (click)="login()" class="waves-effect waves-light btn"  *ngIf="!authService.isLoggedIn">Se connecter</a>
+      <div class="d-block p-3 m-auto">
+        <a (click)="login()"  class="btn btn-success mb-3 px-4 px-2"  *ngIf="!authService.isLoggedIn">Se connecter</a>
         <a (click)="logout()" *ngIf="authService.isLoggedIn">Se déconnecter</a>
       </div>
     </div>
     </div>
-    </div>
+	</div>
   `
 })
 export class LoginComponent {
 	message: string = 'Vous êtes déconnecté !';
+	successConnection = false;
 	private name: string;
 	private password: string;
 
-	constructor(private authService: AuthService, private router: Router) { }
+	constructor(private authService: AuthService, private router: Router) {}
 
 	// Informe l'utilisateur sur son authentfication.
 	setMessage() {
-		this.message = this.authService.isLoggedIn ?
-			'Vous êtes connecté.' : 'Identifiant ou mot de passe incorrect.';
+		if (this.authService.isLoggedIn) {
+			this.message = 'Vous êtes connecté.';
+			this.successConnection = true;
+		}
+		this.message = 'Identifiant ou mot de passe incorrect.';
+		this.successConnection = false;
 	}
 
-	// Connecte l'utilisateur auprès du Guard
 	login() {
 		this.message = 'Tentative de connexion en cours ...';
 		this.authService.login(this.name, this.password).subscribe(() => {
 			this.setMessage();
 			if (this.authService.isLoggedIn) {
-				// Récupère l'URL de redirection depuis le service d'authentification
-				// Si aucune redirection n'a été définis, redirige l'utilisateur vers la liste des pokemons.
-				let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/pokemons/list';
-				// Redirige l'utilisateur
+				const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/pokemons/all';
 				this.router.navigate([redirect]);
 			} else {
 				this.password = '';
@@ -61,9 +74,9 @@ export class LoginComponent {
 		});
 	}
 
-	// Déconnecte l'utilisateur
 	logout() {
 		this.authService.logout();
 		this.setMessage();
+		this.successConnection = false;
 	}
 }

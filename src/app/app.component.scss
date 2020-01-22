@@ -1,0 +1,8 @@
+.item-menu{ position: absolute; right: 10px; }
+.item-menu .btn{ margin-left: 50px; }
+
+@media screen and (max-width: 991px) {
+    .item-menu{ position: relative; }
+    .navbar-brand { margin: 0 auto !important; }
+    .item-menu .btn{ margin-left: 0px; display: inline-block; }
+}

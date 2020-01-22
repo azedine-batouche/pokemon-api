@@ -1,9 +1,8 @@
 <form *ngIf="pokemon" (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
-        <div class="row">
-          <div class="col s8 offset-s2">
-            <div class="card-panel">
+        <div class="">
+          <div class="row text-left">
+            <div class=" w-75 mx-auto ">
       
-              <!-- Pokemon name -->
               <div class="form-group">
                 <label for="name">Nom</label>
                 <input type="text" class="form-control" id="name"
@@ -11,17 +10,14 @@
                         pattern="^[a-zA-Z0-9àéèç]{1,25}$"
                        [(ngModel)]="pokemon.name" name="name"
                        #name="ngModel">
-      
                 <div [hidden]="name.valid || name.pristine"
                       class="card-panel red accent-1">
                       Le nom du pokémon est requis (1-25).
                 </div>
               </div>
-      
-              <!-- Pokemon hp -->
               <div class="form-group">
-                <label for="hp">Point de vie</label>
-                <input type="number" class="form-control" id="hp"
+                <label for="hp" class="text-left">Point de vie</label>
+                <input type="number" class="form-control " id="hp"
                         required
                         pattern="^[0-9]{1,3}$"
                        [(ngModel)]="pokemon.hp" name="hp"
@@ -32,7 +28,6 @@
                  </div>
               </div>
       
-              <!-- Pokemon cp -->
               <div class="form-group">
                 <label for="cp">Dégâts</label>
                 <input type="number" class="form-control" id="cp"
@@ -43,45 +38,37 @@
                  <div [hidden]="cp.valid || hp.pristine"
                        class="card-panel red accent-1">
                        Les dégâts du pokémon sont compris entre 0 et 99.
-                 </div>
+                 </div>           
               </div>
-      
-              <!-- Pokemon types -->
-              <form class="form-group">
+
+              <div class=" px-3 form-group">
                 <label for="types">Types</label>
-                <p *ngFor="let type of types">
-                  <label>
-                    <input type="checkbox"
-                      class="filled-in"
-                      id="{{ type }}"
-                      [value]="type"
-                      [checked]="hasType(type)"
-                      [disabled]="!isTypesValid(type)"
-                      (change)="selectType($event, type)"/>
-                    <span [attr.for]="type">
-                      <div class="{{ type | pokemonTypeColor }}">
-                        {{ type }}
-                      </div>
-                    </span>
-                  </label>
-                </p>
-              </form>
-      
-              <!-- Submit button -->
-              <div class="divider"></div>
-              <div class="section center">
+                <div *ngFor="let type of types" class=" form-check">
+                  <div class="row">
+                        <input type="checkbox"
+                        class="form-check-input"
+                        id="{{ type }}"
+                        [value]="type"
+                        [checked]="hasType(type)"
+                        [disabled]="!isTypesValid(type)"
+                        (change)="selectType($event, type)"/>
+                        <label [attr.for]="type" class="form-check-label">
+                          <span class="{{ type }}"> {{type}} </span>
+                        </label>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
                 <button type="submit"
-                  class="waves-effect waves-light btn"
+                  class="btn btn-success mx-auto px-3 py-2"
                   [disabled]="!pokemonForm.form.valid">
                   Valider</button>
               </div>
-      
             </div>
           </div>
         </div>
       </form>
-      <!-- <h3 *ngIf="!pokemon" class="center">Aucun pokémon à éditer...</h3> -->
 
       <h4 *ngIf="!pokemon" class="center">
           <pkmn-loader></pkmn-loader>
-        </h4>
+       </h4>

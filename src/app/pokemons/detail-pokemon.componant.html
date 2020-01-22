@@ -1,13 +1,13 @@
 <div *ngIf="pokemon" class="row">
-    <div class="col s12 m8 offset-m2">
-    <h2 class="header center">{{ pokemon.name }}</h2>
-    <div class="card horizontal hoverable">
+    <div class="container p-5">
+    <div class="card-detail-pokemon text-center mx-auto py-3 border border-secondary rounded">
+      <h2 class="text-success">{{ pokemon.name }}</h2>
       <div class="card-image">
         <img [src]="pokemon.picture">
       </div>
-      <div class="card-stacked">
+      <div class="">
         <div class="card-content">
-          <table class="bordered striped">
+          <table class="table table-dark">
             <tbody>
               <tr>
                 <td>Nom</td>
@@ -24,26 +24,35 @@
               <tr>
                 <td>Types</td>
                 <td>
-                  <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                  <span *ngFor="let type of pokemon.types" class="{{ type }}">{{type}}&nbsp;</span>
                 </td>
               </tr>
               <tr>
                 <td>Date de création</td>
-                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+                <td><em>{{ pokemon.created | date:"dd/MM/yyyy"}}</em></td>
               </tr>
+
             </tbody>
           </table>
         </div>
-        <div class="card-action">
-          <a (click)="goBack()" class="waves-effect waves-light btn">Retour</a>
-          <a (click)="goEdit(pokemon)" class="waves-effect waves-light btn">Editer</a>
-          <a (click)="deletePokemon(pokemon)">Supprimer</a>
+        <div class="row">
+          <div class="col-md-4 p-3 text-center">
+            <a (click)="goBack()" class="btn btn-warning text-light">Retour</a>
+          </div>
+          <div class="col-md-4 p-3 text-center">
+            <a (click)="goEdit(pokemon)" class="btn btn-primary text-light">Editer</a>
+          </div>
+          <div class="col-md-4 p-3 text-center">
+            <a (click)="deletePokemon(pokemon)" class="btn btn-danger text-light">Supprimer</a>
+          </div>
         </div>
       </div>
     </div>
     </div>
     </div>
-    <!-- <h4 *ngIf='!pokemon' class="center">Aucun pokémon à afficher !</h4> -->
-    <h4 *ngIf="!pokemon" class="center">
-      <pkmn-loader></pkmn-loader>
+
+    <h4 *ngIf="!pokemon" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </h4>

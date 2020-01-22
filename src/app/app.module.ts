@@ -13,6 +13,9 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { FormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { ListPokeApiComponent } from './list-poke-api/list-poke-api.component';
+import { DetailPokemonApiComponent } from './detail-pokemon/detail-pokemon-api.component';
+import { PokemonTypeColorPipe } from './pokemons/pokemon-type-color.pipe';
 
 
 
@@ -21,13 +24,16 @@ import { LoginComponent } from './login.component';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    ListPokeApiComponent,
+    DetailPokemonApiComponent,
+    PokemonTypeColorPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false} ),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true} ),
     PokemonsModule,
     LoginRoutingModule,
     AppRoutingModule,

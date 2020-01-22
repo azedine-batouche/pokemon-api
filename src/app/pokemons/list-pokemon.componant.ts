@@ -11,19 +11,17 @@ export class ListPokemonComponent implements OnInit {
 
 
   private pokemons: Pokemon[];
-  private title: string = "Liste des pokémons";
+  private title = 'Liste des pokémons';
 
-    constructor(private router: Router, private pokemonsService: PokemonsService){}
+    constructor (private router: Router, private pokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
      this.pokemonsService.getPokemons().subscribe( pokemons => this.pokemons = pokemons);
   }
 
   selectPokemon(pokemon: Pokemon) {
    // alert("Vous avez cliqué sur: " + pokemon.name);
-    let link = ['/pokemons', pokemon.id];
+    const link = ['/pokemons', pokemon.id];
     this.router.navigate(link);
   }
 }

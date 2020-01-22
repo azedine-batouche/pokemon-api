@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+
+.wrapper-main{
+    display: table;
+    margin: 0 auto;
+    height: 90vh;
+}
+.wrapper{ display: table-cell; vertical-align: middle; }
+.card-size{padding: 40px 30px !important; min-width: 400px; }
+.group-input{ padding: 10px 20px ; }
+
+.navbar-content{ display: block; background-color: #1593D3 !important; }
+.btn-color{
+    background-color: #1593D3 !important;
+}
+.nav-color{ display: contents }
+.msg-success{ color: #42A948;}
+.msg-danger{ color: #a94442;}
+.btn-space{
+    margin-top: 15px;
+}
+.link-not-found:hover{
+    border-radius: 8px;
+    background-color: #1593D3 ;
+    background-color: none;
+}
+.logout-ctn {
+    float: right;
+    margin-right: 20px;
+}
+.logout-btn{
+    color: #a94442 ;
+}
+.ctn-log{
+    min-width: 440px;
+}
+.ctn-log:hover{
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.log-info{
+    padding: 8px;
+}
+.card{ cursor: pointer; }
+.searh-input{
+    min-width: 440px;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto;
+    display: block;
+    outline: none;
+}
+.ctn-search-input{
+    position: relative;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.ctn-collection{
+    position: relative;
+    margin: 0 auto;
+    width: 440px;
+    display: block;
+}
+.collection{
+    position: absolute;
+    width: 440px;
+    margin: 0 auto;
+    background-color: 440px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #f8f9fa;
+    opacity: 0.9;
+    z-index: 1;
+    padding: 0px 20px;
+}
+.collection-item{
+    display: block;
+    padding: 5px 0px;
+    cursor: pointer;
+}
+.collection a:hover{
+    color: #007bff;
+    font-weight: 500;
+}
+
+.card-detail-pokemon{
+    max-width: 500px;
+    width: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .searh-input{
+    width: 75%;
+    min-width: auto;
+    }
+    .ctn-log{
+        min-width: auto;
+    }
+    .ctn-collection{
+        width: 70%;
+        min-width: auto;
+    }
+     .collection{
+        width: 99%;
+        min-width: auto;
+    }
+}

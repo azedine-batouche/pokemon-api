@@ -1,35 +1,30 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListPokemonComponent }    from './list-pokemon.componant';
-import { DetailPokemonComponent }  from './detail-pokemon.componant';
+import { ListPokemonComponent } from './list-pokemon.componant';
+import { DetailPokemonComponent } from './detail-pokemon.componant';
 import { EditPokemonComponent } from './edit-pokemon.component';
 
 import { AuthGuard } from '../auth-guard.service';
-// les routes du module Pokémon
-// const pokemonsRoutes: Routes = [
-// 	{ path: 'pokemons', component: ListPokemonComponent },
-// 	{ path: 'pokemon/edit/:id', component: EditPokemonComponent, canActivate: [AuthGuard]},
-// 	{ path: 'pokemon/:id', component: DetailPokemonComponent }
-// ];
+import { ListPokeApiComponent } from '../list-poke-api/list-poke-api.component';
+import { DetailPokemonApiComponent } from '../detail-pokemon/detail-pokemon-api.component';
 
 const pokemonsRoutes: Routes = [
 {
-	path:'pokemons',
-	canActivate:[AuthGuard],
-	children:[
-	{ path: 'all', component: ListPokemonComponent },
- 	{ path: 'edit/:id', component: EditPokemonComponent, canActivate: [AuthGuard]},
-	{ path: ':id', component: DetailPokemonComponent }
-	]
+path: 'pokemons',
+canActivate: [AuthGuard],
+children:[
+{ path: 'pokeapi', component: ListPokeApiComponent },
+{ path: 'all', component: ListPokemonComponent },
+{ path: 'edit/:id', component: EditPokemonComponent},
+{ path: ':id', component: DetailPokemonComponent },
+{ path: 'pokeapi/:id', component:  DetailPokemonApiComponent},]
 }
 ];
 @NgModule({
 	imports: [
-		RouterModule.forChild(pokemonsRoutes)
+	RouterModule.forChild(pokemonsRoutes)
 	],
-	exports: [
-		RouterModule
-	]
+	exports: [RouterModule]
 })
-export class PokemonRoutingModule { }
+export class PokemonRoutingModule {}

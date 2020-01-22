@@ -1,50 +1,55 @@
-import { PipeTransform, Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
+/*
+ * Affiche la couleur correspondant au type du pokémon.
+ * Prend en argument le type du pokémon.
+ * Exemple d'utilisation:
+ *   {{ pokemon.type | pokemonTypeColor }}
+*/
+@Pipe({name: 'pokemonTypeColor'})
+export class PokemonTypeColorPipe implements PipeTransform {
+  transform(type: string): string {
 
-@Pipe({name:'pokemonTypeColor'})
-export class PokemonTypeColor implements PipeTransform{
-    transform(type: string): string {
+    let color: string;
 
-        let color: string;
-
-        switch(type){
-            case 'Feu':
-        color = 'red lighten-1';
+    switch (type) {
+      case 'fire':
+        color = 'bg-danger';
         break;
-      case 'Eau':
-        color = 'blue lighten-1';
+      case 'water':
+        color = 'bg-primary';
         break;
-      case 'Plante':
-        color = 'green lighten-1';
+      case 'grass':
+        color = 'bg-success';
         break;
-      case 'Insecte':
-        color = 'brown lighten-1';
+      case 'bug':
+        color = 'bg-secondary';
         break;
-      case 'Normal':
-        color = 'grey lighten-3';
+      case 'normal':
+        color = 'bg-light text-primary';
         break;
-      case 'Vol':
-        color = 'blue lighten-3';
+      case 'flying':
+        color = 'bg-warning';
         break;
-      case 'Poison':
-        color = 'deep-purple accent-1';
+      case 'poison':
+        color = 'bg-info text-light';
         break;
       case 'Fée':
-        color = 'pink lighten-4';
+        color = 'bg-warning text-info';
         break;
-      case 'Psy':
-        color = 'deep-purple darken-2';
+      case 'psy':
+        color = 'bg-dark text-danger';
         break;
-      case 'Electrik':
-        color = 'lime accent-1';
+      case 'electric':
+        color = 'bg-danger text-warning';
         break;
-      case 'Combat':
-        color = 'deep-orange';
+      case 'ground':
+        color = 'bg-warning';
         break;
       default:
-        color = 'grey';
+        color = 'bg-dark text-light';
         break;
-        }
-        return 'chip ' + color;
     }
+    return color ;
+  }
 }

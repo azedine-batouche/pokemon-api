@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from './pokemons/pokemon';
 import { POKEMON } from './pokemons/mock-pokemons';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { AuthGuard } from './auth-guard.service';
 
 @Component({
   selector: 'pokemon-app',
@@ -11,17 +15,29 @@ export class AppComponent implements OnInit {
 
 
   private pokemons: Pokemon[];
-  private title: string = "Liste des pokémons";
-  private age:number= 20;
+  private showNav: BehaviorSubject<false>;
+  private  show = false;
+  private show$: Observable<boolean>;
 
+
+  constructor( private authService: AuthService, private authGuard: AuthGuard ,private router: Router ){}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.pokemons = POKEMON;
+     this.display();
   }
 
-  selectPokemon(pokemon: Pokemon) {
-    alert("Vous avez cliqué sur: " + pokemon.name);
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
+ 
+  gotoApi() {
+    this.router.navigate(['/pokemons/poke']);
+  }
+
+  display() {
+    return this.authService.displayNav();
+  }
+  
 }

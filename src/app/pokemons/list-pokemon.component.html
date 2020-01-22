@@ -1,23 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<h1 class='center'>Pokémons</h1>
-<div class='container'>
-<div class="row">
-  
 <pokemon-search></pokemon-search>
-
-<div *ngFor='let pokemon of pokemons' class="col s6 m4">
-  <div class="card horizontal" (click)="selectPokemon(pokemon)" pkmnBorderCard>
-    <div class="card-image">
-      <img [src]="pokemon.picture">
-    </div>
-    <div class="card-stacked">
-      <div class="card-content">
-        <p>{{ pokemon.name }}</p>
-        <p><small>{{ pokemon.created | date:"dd/mm/yyyy" }}</small></p>
-        <span *ngFor="let type of pokemon.types" class=" {{ type | pokemonTypeColor }}">{{ type }}</span>
+<div class='container mt-5'>
+<div class="row">
+<div *ngFor='let pokemon of pokemons' class="col-lg-4 col-md-12">
+  <div class="my-2" (click)="selectPokemon(pokemon)" pkmnBorderCard> 
+      <div class="row px-2">
+        <div class="col-md-6 col-5 m-auto">
+          <img [src]="pokemon.picture" width="90%" >
+        </div>
+        <div class="col-md-6 col-7 py-4">
+          <div>
+            <h5 class="text-success">{{ pokemon.name }}</h5>
+            <p>{{ pokemon.created  }}</p>
+            <p> <span *ngFor="let type of pokemon.types"   class=" {{ type }}">{{ type }}  </span></p>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>

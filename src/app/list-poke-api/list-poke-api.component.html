@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="row p-4 mb-1">
+    <div class="mx-auto p-3  ctn-search">
+      <svg class="bi bi-search text-secondary search-icon" width="25px" height="25px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M12.442 12.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M8.5 14a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM15 8.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+      </svg>
+        <input type="text" class="w-100 p-2 pl-5 searchBox" placeholder="Search a pokemon" #boxSearch  (keyup.enter)='search(boxSearch.value)' autocomplete="on" required>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="loading" >
+  <div class="row p-5">
+    <div class="spinner-border m-auto  text-success" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<div class="container"> 
+<div class="wrapper" *ngIf="!searchAccess && !loading">
+    <div class="row" *ngIf="success" >
+          <div class=" col-md-4 col-sm-6 col-12 ctn-item"  *ngFor="let pokemon of listPokemons">
+            <div class="card "  (click)="detailPokemon(pokemon.id)">
+            <img [src]="pokemon.urlImage" class="card-img-top img-item" alt="..." width="60px">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{pokemon.name?.toUpperCase()}}</h5>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><small class="text-muted">- Pokemon id: #0{{pokemon.id}}</small></p>
+              </div>
+             </div>
+          </div>
+      </div>
+      <div class="btn-more text-center">
+        <button class="btn btn-primary btn-plus" data-toggle="tooltip" data-placement="bottom" title="Show more Pokemon" (click)="getMorePokemon()">
+           <span>MORE</span>  
+            </button>
+      </div>
+
+    </div>
+    <div class="container" *ngIf="searchAccess && !errorSearch && !loading">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-12 ctn-item">
+          <div class="card "  (click)="detailPokemon(searchPokemon.id)">
+            <img [src]="searchPokemon.urlImage" class="card-img-top img-item" alt="..." width="60px">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{searchPokemon.name?.toUpperCase()}}</h5>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><small class="text-muted">- Pokemon id: #0{{searchPokemon.id}}</small></p>
+              </div>
+             </div>
+        </div>
+      </div>
+     
+      <div class="row">
+        <button type="button" class="btn btn-outline-primary mx-auto" (click)="goToList()" >Go back</button>
+    </div>
+     </div>
+     <div class="page-wrap d-flex flex-row align-items-center" *ngIf="errorSearch && searchAccess && !loading">
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 p-5 text-center">
+                <span class="display-1 d-block">404</span>
+                <div class="mb-4 lead">The pokemon you are looking for was not found.</div>
+                <a  class="btn btn-primary" (click)="goToList()">Go back</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

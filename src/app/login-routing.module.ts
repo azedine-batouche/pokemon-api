@@ -3,7 +3,6 @@ import { NgModule }       from '@angular/core';
 import { RouterModule }   from '@angular/router';
 import { AuthService }    from './auth.service';
 import { LoginComponent } from './login.component';
-import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { AuthGuard } from './auth-guard.service';
     RouterModule
   ],
   providers: [
-    AuthGuard,  
     AuthService
   ]
 })

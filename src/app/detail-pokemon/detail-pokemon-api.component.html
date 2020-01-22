@@ -1,0 +1,143 @@
+<div class="container">
+        <div class="row container-header">
+          <div class="col-md-3 ">   
+            <img src='https://pokeres.bastionbot.org/images/pokemon/{{idPokemon}}.png'  class="card-img img-detail" alt="..." width="70%">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+            <h2 class="card-title text-capitalize" >  {{name}}</h2>
+            <div *ngFor="let desc of description">
+                <p class="card-text"><small class="text-muted">{{desc}}</small></p>
+            </div>
+            <div class="type">
+                <p *ngFor="let type of types" class="{{type | pokemonTypeColor}}"> {{type |uppercase}}</p>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row container-main">
+            <div class="row">
+                
+                <h4 class="text-info"><svg class="bi bi-text-indent-left custom-icon" width="32px" height="32px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 5.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm.646 2.146a.5.5 0 01.708 0l2 2a.5.5 0 010 .708l-2 2a.5.5 0 01-.708-.708L6.293 10 4.646 8.354a.5.5 0 010-.708zM9 8.5a.5.5 0 01.5-.5h6a.5.5 0 010 1h-6a.5.5 0 01-.5-.5zm0 3a.5.5 0 01.5-.5h6a.5.5 0 010 1h-6a.5.5 0 01-.5-.5zm-5 3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                  </svg>
+                     General Information</h4>
+            </div>
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Base Exp.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">#0{{idPokemon}}</th>
+                    <td>{{height}} cm</td>
+                    <td>{{weight}} kg</td>
+                    <td>{{baseExp}} pts</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="row container-main">
+            <div class="col-md-6">
+                <h4 class="text-info">
+                    <svg class="bi bi-sun" width="32px" height="32px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 10a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z"/>
+                        <path fill-rule="evenodd" d="M10.202 2.28a.25.25 0 00-.404 0l-.91 1.255a.25.25 0 01-.334.067L7.232 2.79a.25.25 0 00-.374.155l-.36 1.508a.25.25 0 01-.282.189l-1.532-.244a.25.25 0 00-.286.286l.244 1.532a.25.25 0 01-.189.282l-1.508.36a.25.25 0 00-.155.374l.812 1.322a.25.25 0 01-.067.333l-1.256.91a.25.25 0 000 .405l1.256.91a.25.25 0 01.067.334l-.812 1.322a.25.25 0 00.155.374l1.508.36a.25.25 0 01.19.282l-.245 1.532a.25.25 0 00.286.286l1.532-.244a.25.25 0 01.282.189l.36 1.508a.25.25 0 00.374.155l1.322-.812a.25.25 0 01.333.067l.91 1.256a.25.25 0 00.405 0l.91-1.256a.25.25 0 01.334-.067l1.322.812a.25.25 0 00.374-.155l.36-1.508a.25.25 0 01.282-.19l1.532.245a.25.25 0 00.286-.286l-.244-1.532a.25.25 0 01.189-.282l1.508-.36a.25.25 0 00.155-.374l-.812-1.322a.25.25 0 01.067-.333l1.256-.91a.25.25 0 000-.405l-1.256-.91a.25.25 0 01-.067-.334l.812-1.322a.25.25 0 00-.155-.374l-1.508-.36a.25.25 0 01-.19-.282l.245-1.532a.25.25 0 00-.286-.286l-1.532.244a.25.25 0 01-.282-.189l-.36-1.509a.25.25 0 00-.374-.154l-1.322.812a.25.25 0 01-.333-.067l-.91-1.256zM10 4.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z" clip-rule="evenodd"/>
+                      </svg>
+                    Stats</h4> 
+                <div class="stats">
+                    <div class="row container-main-sec">
+                        <div class="col-md-3">
+                            <p class="item-stat">Speed:</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="baseStat[0]"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{baseStat[0]}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="item-stat">SP-defense:</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" [style.width.%]="baseStat[1]"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{baseStat[1]}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="item-stat">SP-attack:</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="baseStat[2]"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{baseStat[2]}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="item-stat">Defense:</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" [style.width.%]="baseStat[3]"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{baseStat[3]}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="item-stat">Attack:</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="baseStat[4]"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{baseStat[4]}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="item-stat">HP:</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="baseStat[5]"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{baseStat[5]}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-info">
+                    <svg class="bi bi-star-half" width="32px" height="32px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M7.354 7.119l2.184-4.327A.516.516 0 0110 2.5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0118 8.32a.55.55 0 01-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L10 15.187l-4.389 2.256a.52.52 0 01-.146.05c-.341.06-.668-.254-.6-.642l.83-4.73-3.522-3.356a.55.55 0 01-.172-.403.59.59 0 01.084-.302.513.513 0 01.37-.245l4.898-.696zM10 14.027c.08 0 .16.018.232.056l3.686 1.894-.694-3.957a.564.564 0 01.163-.505l2.907-2.77-4.053-.576a.525.525 0 01-.393-.288l-1.847-3.658-.001.003v9.8z" clip-rule="evenodd"/>
+                      </svg>
+                    Abilities</h4> 
+                    <div class="ctn-ability" *ngFor="let ability of abilities; let idx = index" [attr.data-index]='idx'>
+                        <div class="item-ability">             
+                                <p>{{idx +1}}-{{ability}}</p>
+                            </div>
+                    </div>
+                    <h4 class="text-info">
+                        <svg class="bi bi-reply-all" width="32px" height="32px" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.002 7.013a.144.144 0 00-.202.134V8.3a.5.5 0 01-.5.5c-.667 0-2.013.005-3.3.822-.984.624-1.99 1.76-2.595 3.876 1.02-.983 2.185-1.516 3.205-1.799a8.745 8.745 0 011.921-.306 7.47 7.47 0 01.798.008h.013l.005.001h.001L9.3 11.9l.05-.498a.5.5 0 01.45.498v1.153c0 .108.11.176.202.134l3.984-2.933a.522.522 0 01.042-.028.147.147 0 000-.252.51.51 0 01-.042-.028l-3.984-2.933zM8.8 12.386a7.745 7.745 0 00-1.923.277c-1.326.368-2.896 1.201-3.94 3.08a.5.5 0 01-.933-.305c.464-3.71 1.886-5.662 3.46-6.66 1.245-.79 2.527-.942 3.336-.971v-.66a1.144 1.144 0 011.767-.96l3.994 2.94a1.147 1.147 0 010 1.946l-3.994 2.94a1.144 1.144 0 01-1.767-.96v-.667z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M12.868 6.293a.5.5 0 01.7-.106l3.993 2.94a1.147 1.147 0 010 1.946l-3.994 2.94a.5.5 0 11-.593-.805l4.012-2.954a.523.523 0 01.042-.028.147.147 0 000-.252.512.512 0 01-.042-.028l-4.012-2.954a.5.5 0 01-.106-.699z" clip-rule="evenodd"/>
+                          </svg>
+                        Moves</h4>
+                        <div class="ctn-move">
+                        <div class="item-move" *ngFor="let move of moves; let idx= index" [attr.data-index]='idx'>
+                        <p >{{move}},</p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-outline-primary mx-auto"[routerLink]="(['/pokemons/pokeapi'])" >Go back</button>
+        </div>
+</div>
