@@ -10,7 +10,7 @@ This project using angular and PokeApi to fetch the data.
 
 # Demo
 
-To get the demo click of the website click here : [pokemon-api](https://batouche-dev.github.io/budget/) .
+To get the demo click of the website click here : [pokemon-api](https://batouche-dev.github.io/pokemon-api/) .
 
 # Setup
 
