@@ -10,17 +10,17 @@ import { PokeapiService } from '../pokeapi.service';
 })
 export class DetailPokemonApiComponent implements OnInit {
 
-  private idPokemon: number
-  private listDetail: Object;
-  private name: string;
-  private weight: number;
-  private height: number;
-  private types: string[] = [];
-  private baseStat: number[] = [];
-  private abilities: string[] = [];
-  private moves: string[] = [];
-  private baseExp: number;
-  private description:  string[] = [];
+   idPokemon: number
+   listDetail: Object;
+   name: string;
+   weight: number;
+   height: number;
+   types: string[] = [];
+   baseStat: number[] = [];
+   abilities: string[] = [];
+   moves: string[] = [];
+   baseExp: number;
+   description:  string[] = [];
 
 
 
