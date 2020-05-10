@@ -14,10 +14,10 @@ import { AuthGuard } from './auth-guard.service';
 export class AppComponent implements OnInit {
 
 
-  private pokemons: Pokemon[];
-  private showNav: BehaviorSubject<false>;
-  private  show = false;
-  private show$: Observable<boolean>;
+   pokemons: Pokemon[];
+   showNav: BehaviorSubject<false>;
+    show = false;
+   show$: Observable<boolean>;
 
 
   constructor( private authService: AuthService, private authGuard: AuthGuard ,private router: Router ){}
